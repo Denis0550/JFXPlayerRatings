@@ -2,13 +2,15 @@ package com.densor.jfxplayerratings.entity;
 
 
 import javax.persistence.*;
+//import lombok.AllArgsConstructor;
+//import lombok.Data;
+//import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "test_table")
 
 public class Ratings {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,19 +20,28 @@ public class Ratings {
     @Column(name = "text")
     private String text;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
+//
+//    public Ratings() {
+//    }
+//
+//    public Ratings(Long id, String text) {
+//        this.id = id;
+//        this.text = text;
+//    }
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getText() {
+//        return text;
+//    }
+//
+//    public void setText(String text) {
+//        this.text = text;
+//    }
 }
