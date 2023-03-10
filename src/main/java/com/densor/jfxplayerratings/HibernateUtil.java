@@ -1,4 +1,5 @@
 package com.densor.jfxplayerratings;
+import com.densor.jfxplayerratings.entity.MunPlayers;
 import com.densor.jfxplayerratings.entity.PlayerRatings;
 import com.densor.jfxplayerratings.entity.Ratings;
 import org.hibernate.Session;
@@ -29,6 +30,7 @@ public class HibernateUtil {
 
                 configuration.addAnnotatedClass(Ratings.class);
                 configuration.addAnnotatedClass(PlayerRatings.class);
+                configuration.addAnnotatedClass(MunPlayers.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);

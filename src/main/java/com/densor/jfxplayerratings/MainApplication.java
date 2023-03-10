@@ -18,8 +18,8 @@ public class MainApplication extends Application {
         var mainController = new MainController(session);
         fxmlLoader.setController(mainController);
 
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setTitle("Manchester United Player Ratings");
         stage.setScene(scene);
         stage.show();
 
