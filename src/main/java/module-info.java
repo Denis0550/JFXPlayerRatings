@@ -4,7 +4,7 @@ module com.densor.jfxplayerratings {
     requires org.hibernate.orm.core;
     requires java.persistence;
     requires java.naming;
-//    requires lombok;
+    requires static lombok;
 
 
     opens com.densor.jfxplayerratings to javafx.fxml, org.hibernate.orm.core;

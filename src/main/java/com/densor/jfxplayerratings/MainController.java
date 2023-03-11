@@ -63,16 +63,14 @@ public class MainController {
     private Button setButton;
     @FXML
     private Button addToDbButton;
-
     @FXML
     private Button button1;
-
     @FXML
     private ChoiceBox<String> box1;
-
+    @FXML
+    private ChoiceBox<String> box2;
     @FXML
     private ImageView img1;
-
     @FXML
     private LineChart<?, ?> chart;
 
@@ -95,6 +93,7 @@ public class MainController {
         ses1.close();
         ObservableList<String> observableList1 = FXCollections.observableArrayList(playerNames);
         this.box1.setItems(observableList1);
+        this.box2.setItems(observableList1);
 
 
         this.btn2.setOnAction(e ->lbl1.setText(textInput.getText()));
@@ -124,7 +123,7 @@ public class MainController {
 
             var rating = new PlayerRatings();
             rating.setGameWeek(Integer.parseInt(textInputGameWeek.getText()));
-            rating.setSquadNumber(Integer.parseInt(textInputSquadNumber.getText()));
+            rating.setLastName(box1.getValue());
             rating.setPlayerRating(Integer.parseInt(textInputPlayerRating.getText()));
 
             ses.save(rating);
