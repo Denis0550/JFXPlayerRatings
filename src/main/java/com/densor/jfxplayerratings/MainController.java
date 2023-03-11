@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -71,6 +73,9 @@ public class MainController {
     @FXML
     private ImageView img1;
 
+    @FXML
+    private LineChart<?, ?> chart;
+
 
 
 
@@ -84,13 +89,12 @@ public class MainController {
     // specific knowledge to JavaFX
     public void initialize() {
 
+
         var ses1 = session.openSession();
         List<String> playerNames = ses1.createQuery("Select m.lastName FROM MunPlayers m", String.class).getResultList();
         ses1.close();
         ObservableList<String> observableList1 = FXCollections.observableArrayList(playerNames);
         this.box1.setItems(observableList1);
-
-        box1.getValue();
 
 
         this.btn2.setOnAction(e ->lbl1.setText(textInput.getText()));
@@ -143,6 +147,14 @@ public class MainController {
 
 
 
+
+        XYChart.Series series = new XYChart.Series();
+        series.getData().add(new XYChart.Data("1",5));
+        series.getData().add(new XYChart.Data("2",4));
+        series.getData().add(new XYChart.Data("3",8));
+        series.getData().add(new XYChart.Data("4",8));
+
+        chart.getData().add(series);
 
 
     }

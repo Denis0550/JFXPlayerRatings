@@ -36,18 +36,18 @@
       <Line endX="540.0" layoutX="26.0" layoutY="387.0" startX="-8.5" />
       <Text layoutX="24.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player form :" wrappingWidth="116.0" />
       <Label fx:id="labelStatus2" layoutX="397.0" layoutY="84.0" prefHeight="37.0" prefWidth="139.0" text="Label" />
-      <LineChart layoutX="129.0" layoutY="450.0" prefHeight="169.0" prefWidth="431.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" upperBound="10.0" />
-        </yAxis>
-      </LineChart>
       <ImageView fx:id="img1" fitHeight="136.0" fitWidth="108.0" layoutX="466.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/985.png" />
          </image>
       </ImageView>
+      <LineChart fx:id="chart" layoutX="66.0" layoutY="436.0" prefHeight="177.0" prefWidth="469.0" title="chart">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
    </children>
 </AnchorPane>
