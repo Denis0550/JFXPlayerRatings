@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.hibernate.SessionFactory;
 
 import java.math.BigInteger;
@@ -50,6 +52,8 @@ public class MainController {
     private Label labelPlayerRating;
     @FXML
     private Label labelStatus;
+    @FXML
+    private Label labelStatus2;
 
 
 
@@ -64,18 +68,30 @@ public class MainController {
     @FXML
     private ChoiceBox<String> box1;
 
-    private ObservableList<String> observableList = FXCollections.observableArrayList("David de Gea", "Jadon Sancho");
+    @FXML
+    private ImageView img1;
+
 
 
 
     public MainController(SessionFactory session) {
         this.session = session;
-
     }
+
+
+
 
     // specific knowledge to JavaFX
     public void initialize() {
-        this.box1.setItems(observableList);
+
+        var ses1 = session.openSession();
+        List<String> playerNames = ses1.createQuery("Select m.lastName FROM MunPlayers m", String.class).getResultList();
+        ses1.close();
+        ObservableList<String> observableList1 = FXCollections.observableArrayList(playerNames);
+        this.box1.setItems(observableList1);
+
+        box1.getValue();
+
 
         this.btn2.setOnAction(e ->lbl1.setText(textInput.getText()));
         this.btn1.setOnAction(e -> {
@@ -95,16 +111,7 @@ public class MainController {
             labelGameWeek.setText(textInputGameWeek.getText());
             labelSquadNumber.setText(textInputSquadNumber.getText());
             labelPlayerRating.setText(textInputPlayerRating.getText());
-
-            var ses = session.openSession();
-
-            List<String> name = ses.createQuery("Select m.lastName FROM MunPlayers m where sqNumber = :sqParameter", String.class)
-                    .setParameter("sqParameter", textInputSquadNumber.getText())
-                    .getResultList();
-            ses.close();
-
-//            labelStatus.setText("Game week "+textInputGameWeek.getText()+" " + name.toString() + "..... " + textInputPlayerRating.getText());
-
+            labelStatus2.setText(box1.getValue());
         });
 
         this.addToDbButton.setOnAction(e -> {
@@ -125,7 +132,7 @@ public class MainController {
         this.button1.setOnAction(e -> {
             var ses = session.openSession();
 
-        List<String> name = ses.createQuery("Select m.lastName FROM MunPlayers m where sqNumber = :sqParameter", String.class)
+            List<String> name = ses.createQuery("Select m.lastName FROM MunPlayers m where sqNumber = :sqParameter", String.class)
                 .setParameter("sqParameter", 8)
                 .getResultList();
 
