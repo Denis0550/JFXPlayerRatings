@@ -64,6 +64,8 @@ public class MainController {
     @FXML
     private Button addToDbButton;
     @FXML
+    private Button loadButton;
+    @FXML
     private Button button1;
     @FXML
     private ChoiceBox<String> box1;
@@ -144,10 +146,24 @@ public class MainController {
             ses.close();
         });
 
+        this.loadButton.setOnAction(e -> {
+            var ses = session.openSession();
+
+            List<Integer> numbers = ses.createQuery("Select p.playerRating FROM PlayerRatings p where lastName = :nameParameter", Integer.class)
+                    .setParameter("nameParameter", box2.getValue())
+                    .getResultList();
+            ses.close();
+
+            for (Integer num : numbers) {
+                System.out.println(num.intValue());
+            }
+        });
 
 
 
         XYChart.Series series = new XYChart.Series();
+
+
         series.getData().add(new XYChart.Data("1",5));
         series.getData().add(new XYChart.Data("2",4));
         series.getData().add(new XYChart.Data("3",8));

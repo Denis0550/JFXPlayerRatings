@@ -51,5 +51,6 @@
       </LineChart>
       <ChoiceBox fx:id="box2" layoutX="140.0" layoutY="402.0" prefHeight="25.0" prefWidth="120.0" />
       <Line endX="-9.0" endY="-10.0" layoutX="292.0" layoutY="174.0" startX="-9.0" startY="94.0" />
+      <Button fx:id="loadButton" layoutX="288.0" layoutY="402.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Load" />
    </children>
 </AnchorPane>
