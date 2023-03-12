@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -154,22 +155,36 @@ public class MainController {
                     .getResultList();
             ses.close();
 
+            XYChart.Series series = new XYChart.Series();
+
+
+            Integer num1 = 0;
             for (Integer num : numbers) {
                 System.out.println(num.intValue());
+                num1++;
+                series.getData().add(new XYChart.Data(num1.toString(),num.intValue()));
             }
+
+//            for (int i = 0; i < numbers.size(); i++) {
+//                Integer temp = numbers.indexOf(i);
+//                series.getData().add(new XYChart.Data("1",temp.intValue()));
+//            }
+
+//            series.getData().add(new XYChart.Data("1",5));
+//            series.getData().add(new XYChart.Data("2",4));
+//            series.getData().add(new XYChart.Data("3",8));
+//            series.getData().add(new XYChart.Data("4",8));
+
+            chart.getData().add(series);
+
+//            for (Integer num : numbers) {
+//                System.out.println(num.intValue());
+//            }
         });
 
 
 
-        XYChart.Series series = new XYChart.Series();
 
-
-        series.getData().add(new XYChart.Data("1",5));
-        series.getData().add(new XYChart.Data("2",4));
-        series.getData().add(new XYChart.Data("3",8));
-        series.getData().add(new XYChart.Data("4",8));
-
-        chart.getData().add(series);
 
 
     }
