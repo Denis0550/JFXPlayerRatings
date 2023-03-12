@@ -42,7 +42,7 @@ public class MainController {
     @FXML
     private ImageView img1;
     @FXML
-    private LineChart<?, ?> chart;
+    private LineChart<Integer, Integer> chart;
 
 
 
@@ -101,12 +101,13 @@ public class MainController {
                     .getResultList();
             ses.close();
 
-            XYChart.Series series = new XYChart.Series();
+            XYChart.Series<Integer, Integer> series = new XYChart.Series<>();
+            series.setName(box2.getValue());
 
 
             Integer num1 = 0;
             for (Integer num : numbers) {
-                System.out.println(num.intValue());
+                System.out.print(num.intValue() + ", ");
                 num1++;
                 series.getData().add(new XYChart.Data(num1.toString(),num.intValue()));
             }
