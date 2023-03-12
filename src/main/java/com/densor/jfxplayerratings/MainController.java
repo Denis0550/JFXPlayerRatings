@@ -10,10 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.hibernate.SessionFactory;
@@ -73,6 +70,8 @@ public class MainController {
     @FXML
     private ChoiceBox<String> box2;
     @FXML
+    private ComboBox<Integer> comboBoxWeeks;
+    @FXML
     private ImageView img1;
     @FXML
     private LineChart<?, ?> chart;
@@ -90,6 +89,11 @@ public class MainController {
     // specific knowledge to JavaFX
     public void initialize() {
 
+        ObservableList<Integer> observableListOfWeeks = FXCollections.observableArrayList();
+        for (int i = 1; i <= 38 ; i++) {
+            observableListOfWeeks.add(i);
+        }
+        this.comboBoxWeeks.setItems(observableListOfWeeks);
 
         var ses1 = session.openSession();
         List<String> playerNames = ses1.createQuery("Select m.lastName FROM MunPlayers m", String.class).getResultList();
@@ -100,6 +104,7 @@ public class MainController {
 
 
         this.btn2.setOnAction(e ->lbl1.setText(textInput.getText()));
+
         this.btn1.setOnAction(e -> {
             var ses = session.openSession();
             var tx = ses.beginTransaction();
@@ -114,7 +119,7 @@ public class MainController {
 
         this.setButton.setOnAction(e -> {
 
-            labelGameWeek.setText(textInputGameWeek.getText());
+            labelGameWeek.setText(Integer.toString(comboBoxWeeks.getValue()));
             labelSquadNumber.setText(textInputSquadNumber.getText());
             labelPlayerRating.setText(textInputPlayerRating.getText());
             labelStatus2.setText(box1.getValue());
@@ -125,7 +130,7 @@ public class MainController {
             var tx = ses.beginTransaction();
 
             var rating = new PlayerRatings();
-            rating.setGameWeek(Integer.parseInt(textInputGameWeek.getText()));
+            rating.setGameWeek(comboBoxWeeks.getValue());
             rating.setLastName(box1.getValue());
             rating.setPlayerRating(Integer.parseInt(textInputPlayerRating.getText()));
 
