@@ -1,8 +1,6 @@
 package com.densor.jfxplayerratings;
 import com.densor.jfxplayerratings.entity.MunPlayers;
 import com.densor.jfxplayerratings.entity.PlayerRatings;
-import com.densor.jfxplayerratings.entity.Ratings;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -28,7 +26,6 @@ public class HibernateUtil {
                 settings.put(Environment.HBM2DDL_AUTO, "none");
                 configuration.setProperties(settings);
 
-                configuration.addAnnotatedClass(Ratings.class);
                 configuration.addAnnotatedClass(PlayerRatings.class);
                 configuration.addAnnotatedClass(MunPlayers.class);
 
