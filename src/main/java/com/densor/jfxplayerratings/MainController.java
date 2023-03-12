@@ -23,38 +23,14 @@ public class MainController {
     private SessionFactory session;
 
     @FXML
-    private Button btn1;
-
-    @FXML
-    private Button btn2;
-
-    @FXML
-    private TextField textInput;
-
-    @FXML
-    private Label lbl1;
-
-
-    /// new part
-
-    @FXML
-    private TextField textInputGameWeek;
-    @FXML
-    private TextField textInputSquadNumber;
-    @FXML
     private TextField textInputPlayerRating;
 
     @FXML
     private Label labelGameWeek;
     @FXML
-    private Label labelSquadNumber;
-    @FXML
     private Label labelPlayerRating;
     @FXML
-    private Label labelStatus;
-    @FXML
     private Label labelStatus2;
-
 
 
     @FXML
@@ -63,8 +39,6 @@ public class MainController {
     private Button addToDbButton;
     @FXML
     private Button loadButton;
-    @FXML
-    private Button button1;
     @FXML
     private ChoiceBox<String> box1;
     @FXML
@@ -78,11 +52,9 @@ public class MainController {
 
 
 
-
     public MainController(SessionFactory session) {
         this.session = session;
     }
-
 
 
 
@@ -103,24 +75,10 @@ public class MainController {
         this.box2.setItems(observableList1);
 
 
-        this.btn2.setOnAction(e ->lbl1.setText(textInput.getText()));
-
-        this.btn1.setOnAction(e -> {
-            var ses = session.openSession();
-            var tx = ses.beginTransaction();
-
-            var rating = new Ratings();
-            rating.setText(textInput.getText());
-            ses.save(rating);
-
-            tx.commit();
-            ses.close();
-        });
 
         this.setButton.setOnAction(e -> {
 
             labelGameWeek.setText(Integer.toString(comboBoxWeeks.getValue()));
-            labelSquadNumber.setText(textInputSquadNumber.getText());
             labelPlayerRating.setText(textInputPlayerRating.getText());
             labelStatus2.setText(box1.getValue());
         });
@@ -140,17 +98,6 @@ public class MainController {
             ses.close();
         });
 
-        this.button1.setOnAction(e -> {
-            var ses = session.openSession();
-
-            List<String> name = ses.createQuery("Select m.lastName FROM MunPlayers m where sqNumber = :sqParameter", String.class)
-                .setParameter("sqParameter", 8)
-                .getResultList();
-
-            labelStatus.setText(name.toString().replaceAll("[^a-zA-Z\\d\\s:]", "").concat(" scores"));
-
-            ses.close();
-        });
 
         this.loadButton.setOnAction(e -> {
             var ses = session.openSession();
@@ -170,25 +117,9 @@ public class MainController {
                 series.getData().add(new XYChart.Data(num1.toString(),num.intValue()));
             }
 
-//            for (int i = 0; i < numbers.size(); i++) {
-//                Integer temp = numbers.indexOf(i);
-//                series.getData().add(new XYChart.Data("1",temp.intValue()));
-//            }
-
-//            series.getData().add(new XYChart.Data("1",5));
-//            series.getData().add(new XYChart.Data("2",4));
-//            series.getData().add(new XYChart.Data("3",8));
-//            series.getData().add(new XYChart.Data("4",8));
-
             chart.getData().add(series);
 
-//            for (Integer num : numbers) {
-//                System.out.println(num.intValue());
-//            }
         });
-
-
-
 
 
 

@@ -12,37 +12,50 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="btn1" layoutX="24.0" layoutY="71.0" mnemonicParsing="false" text="Add to db" />
-      <Label fx:id="lbl1" layoutX="194.0" layoutY="27.0" prefHeight="25.0" prefWidth="120.0" text="..." />
-      <TextField fx:id="textInput" layoutX="24.0" layoutY="27.0" />
-      <Button fx:id="btn2" layoutX="129.0" layoutY="71.0" mnemonicParsing="false" text="Set" />
-      <TextField fx:id="textInputGameWeek" layoutX="194.0" layoutY="109.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField fx:id="textInputSquadNumber" layoutX="403.0" layoutY="37.0" prefHeight="25.0" prefWidth="70.0" />
-      <TextField fx:id="textInputPlayerRating" layoutX="146.0" layoutY="247.0" prefHeight="25.0" prefWidth="70.0" />
-      <Label fx:id="labelGameWeek" layoutX="314.0" layoutY="174.0" prefHeight="25.0" prefWidth="104.0" text="..." />
-      <Label fx:id="labelSquadNumber" layoutX="493.0" layoutY="37.0" prefHeight="25.0" prefWidth="50.0" text="..." />
-      <Label fx:id="labelPlayerRating" layoutX="314.0" layoutY="247.0" prefHeight="25.0" prefWidth="104.0" text="..." />
-      <Button fx:id="setButton" layoutX="24.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text=" Set Fields" />
-      <Button fx:id="addToDbButton" layoutX="24.0" layoutY="331.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Add  to DB" />
-      <Button fx:id="button1" layoutX="518.0" layoutY="290.0" mnemonicParsing="false" text="1" />
-      <Label fx:id="labelStatus" layoutX="172.0" layoutY="302.0" prefHeight="25.0" prefWidth="240.0" text="STATUS" />
-      <ChoiceBox fx:id="box1" layoutX="146.0" layoutY="209.0" prefHeight="25.0" prefWidth="120.0" />
-      <Text layoutX="24.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game week :" wrappingWidth="116.0" />
-      <Text layoutX="24.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player :" wrappingWidth="116.0" />
-      <Text layoutX="24.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player rating (1-10) :" wrappingWidth="116.0" />
-      <Line endX="540.0" layoutX="26.0" layoutY="387.0" startX="-8.5" />
-      <Text layoutX="24.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player form :" wrappingWidth="116.0" />
-      <Label fx:id="labelStatus2" layoutX="314.0" layoutY="209.0" prefHeight="25.0" prefWidth="104.0" text="..." />
-      <ImageView fx:id="img1" fitHeight="136.0" fitWidth="108.0" layoutX="449.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="textInputPlayerRating" layoutX="165.0" layoutY="131.0" prefHeight="25.0" prefWidth="70.0" />
+      <Label fx:id="labelGameWeek" layoutX="339.0" layoutY="49.0" prefHeight="25.0" prefWidth="104.0" text="...">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="labelPlayerRating" layoutX="339.0" layoutY="131.0" prefHeight="25.0" prefWidth="104.0" text="...">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Button fx:id="setButton" layoutX="24.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text=" Set Fields" />
+      <Button fx:id="addToDbButton" layoutX="24.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Add  to DB" />
+      <ChoiceBox fx:id="box1" layoutX="165.0" layoutY="90.0" prefHeight="25.0" prefWidth="120.0" />
+      <Text layoutX="24.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game week :" wrappingWidth="116.0">
+         <font>
+            <Font size="15.0" />
+         </font></Text>
+      <Text layoutX="24.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player :" wrappingWidth="116.0">
+         <font>
+            <Font size="15.0" />
+         </font></Text>
+      <Text layoutX="22.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player rating (1-10) :" wrappingWidth="135.0">
+         <font>
+            <Font size="15.0" />
+         </font></Text>
+      <Line endX="540.0" layoutX="32.0" layoutY="262.0" startX="-8.5" />
+      <Text layoutX="32.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player form :" wrappingWidth="116.0">
+         <font>
+            <Font size="15.0" />
+         </font></Text>
+      <Label fx:id="labelStatus2" layoutX="339.0" layoutY="91.0" prefHeight="25.0" prefWidth="104.0" text="...">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <ImageView fx:id="img1" fitHeight="136.0" fitWidth="108.0" layoutX="466.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/985.png" />
          </image>
       </ImageView>
-      <LineChart fx:id="chart" layoutX="22.0" layoutY="435.0" prefHeight="225.0" prefWidth="550.0" title="Player Form (Rating system)">
+      <LineChart fx:id="chart" layoutX="25.0" layoutY="324.0" prefHeight="225.0" prefWidth="550.0" title="Player Form (Rating system)">
         <xAxis>
           <CategoryAxis side="BOTTOM" tickLabelsVisible="false" />
         </xAxis>
@@ -50,9 +63,14 @@
           <NumberAxis minorTickCount="1" minorTickLength="1.0" side="LEFT" tickLabelGap="5.0" tickUnit="1.0" upperBound="10.0" />
         </yAxis>
       </LineChart>
-      <ChoiceBox fx:id="box2" layoutX="140.0" layoutY="402.0" prefHeight="25.0" prefWidth="120.0" />
-      <Line endX="-9.0" endY="-10.0" layoutX="292.0" layoutY="174.0" startX="-9.0" startY="107.0" />
-      <Button fx:id="loadButton" layoutX="288.0" layoutY="402.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Load" />
-      <ComboBox fx:id="comboBoxWeeks" layoutX="146.0" layoutY="170.0" prefHeight="25.0" prefWidth="64.0" />
+      <ChoiceBox fx:id="box2" layoutX="140.0" layoutY="276.0" prefHeight="25.0" prefWidth="120.0" />
+      <Line endX="-16.0" endY="-134.0" layoutX="313.0" layoutY="175.0" startX="-16.0" startY="-16.0" />
+      <Button fx:id="loadButton" layoutX="285.0" layoutY="276.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Load" />
+      <ComboBox fx:id="comboBoxWeeks" layoutX="165.0" layoutY="48.0" prefHeight="25.0" prefWidth="64.0" />
+      <Text layoutX="23.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter game week, player and their rating..." wrappingWidth="461.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
