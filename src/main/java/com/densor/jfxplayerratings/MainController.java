@@ -17,14 +17,11 @@ public class MainController {
     private SessionFactory session;
 
     @FXML
-    private TextField textInputPlayerRating;
-
-    @FXML
     private Label labelGameWeek;
     @FXML
     private Label labelPlayerRating;
     @FXML
-    private Label labelStatus2;
+    private Label labelPlayerLastName;
 
 
     @FXML
@@ -34,15 +31,17 @@ public class MainController {
     @FXML
     private Button loadButton;
     @FXML
-    private ChoiceBox<String> box1;
+    private ChoiceBox<String> choiceBoxPlayerLastNameForDb;
     @FXML
-    private ChoiceBox<String> box2;
+    private ChoiceBox<String> choiceBoxPlayerLastNameForChart;
     @FXML
     private ComboBox<Integer> comboBoxWeeks;
     @FXML
+    private ComboBox<Integer> comboBoxRating;
+    @FXML
     private ImageView img1;
     @FXML
-    private LineChart<Integer, Integer> chart;
+    private LineChart<String, Integer> chart;
 
 
 
@@ -55,26 +54,37 @@ public class MainController {
     // specific knowledge to JavaFX
     public void initialize() {
 
+        // Fields are populated
+
         ObservableList<Integer> observableListOfWeeks = FXCollections.observableArrayList();
         for (int i = 1; i <= 38 ; i++) {
             observableListOfWeeks.add(i);
         }
         this.comboBoxWeeks.setItems(observableListOfWeeks);
 
+        ObservableList<Integer> observableListOfRatings = FXCollections.observableArrayList();
+        for (int i = 1; i <= 10 ; i++) {
+            observableListOfRatings.add(i);
+        }
+        this.comboBoxRating.setItems(observableListOfRatings);
+
+
         var ses1 = session.openSession();
         List<String> playerNames = ses1.createQuery("Select m.lastName FROM MunPlayers m", String.class).getResultList();
         ses1.close();
         ObservableList<String> observableList1 = FXCollections.observableArrayList(playerNames);
-        this.box1.setItems(observableList1);
-        this.box2.setItems(observableList1);
+
+        this.choiceBoxPlayerLastNameForDb.setItems(observableList1);
+        this.choiceBoxPlayerLastNameForChart.setItems(observableList1);
 
 
+        // Buttons / Actions
 
         this.setButton.setOnAction(e -> {
-
             labelGameWeek.setText(Integer.toString(comboBoxWeeks.getValue()));
-            labelPlayerRating.setText(textInputPlayerRating.getText());
-            labelStatus2.setText(box1.getValue());
+            labelPlayerLastName.setText(choiceBoxPlayerLastNameForDb.getValue());
+            labelPlayerRating.setText(Integer.toString(comboBoxRating.getValue()));
+
         });
 
         this.addToDbButton.setOnAction(e -> {
@@ -83,8 +93,9 @@ public class MainController {
 
             var rating = new PlayerRatings();
             rating.setGameWeek(comboBoxWeeks.getValue());
-            rating.setLastName(box1.getValue());
-            rating.setPlayerRating(Integer.parseInt(textInputPlayerRating.getText()));
+            rating.setLastName(choiceBoxPlayerLastNameForDb.getValue());
+            rating.setPlayerRating(comboBoxRating.getValue());
+
 
             ses.save(rating);
 
@@ -92,33 +103,25 @@ public class MainController {
             ses.close();
         });
 
-
         this.loadButton.setOnAction(e -> {
             var ses = session.openSession();
-
             List<Integer> numbers = ses.createQuery("Select p.playerRating FROM PlayerRatings p where lastName = :nameParameter", Integer.class)
-                    .setParameter("nameParameter", box2.getValue())
+                    .setParameter("nameParameter", choiceBoxPlayerLastNameForChart.getValue())
                     .getResultList();
             ses.close();
 
-            XYChart.Series<Integer, Integer> series = new XYChart.Series<>();
-            series.setName(box2.getValue());
-
+            XYChart.Series<String, Integer> series = new XYChart.Series<>();
+            series.setName(choiceBoxPlayerLastNameForChart.getValue());
 
             Integer num1 = 0;
             for (Integer num : numbers) {
-                System.out.print(num.intValue() + ", ");
+                System.out.print(num + ", ");
                 num1++;
-                series.getData().add(new XYChart.Data(num1.toString(),num.intValue()));
+                series.getData().add(new XYChart.Data<>(num1.toString(), num));
             }
-
             chart.getData().add(series);
-
         });
 
-
-
     }
-
 
 }
