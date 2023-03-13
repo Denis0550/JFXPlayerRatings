@@ -1,10 +1,17 @@
 package com.densor.jfxplayerratings.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "mu_players")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class MunPlayers {
 
     @Id
@@ -28,63 +35,4 @@ public class MunPlayers {
     @Column(name = "nationality")
     private String nationality;
 
-    public MunPlayers() {
-    }
-
-    public MunPlayers(Long id, int sqNumber, String position, String firstName, String lastName, String nationality) {
-        this.id = id;
-        this.sqNumber = sqNumber;
-        this.position = position;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nationality = nationality;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getSqNumber() {
-        return sqNumber;
-    }
-
-    public void setSqNumber(int sqNumber) {
-        this.sqNumber = sqNumber;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
 }

@@ -84,7 +84,6 @@ public class MainController {
             labelGameWeek.setText(Integer.toString(comboBoxWeeks.getValue()));
             labelPlayerLastName.setText(choiceBoxPlayerLastNameForDb.getValue());
             labelPlayerRating.setText(Integer.toString(comboBoxRating.getValue()));
-
         });
 
         this.addToDbButton.setOnAction(e -> {
@@ -95,7 +94,6 @@ public class MainController {
             rating.setGameWeek(comboBoxWeeks.getValue());
             rating.setLastName(choiceBoxPlayerLastNameForDb.getValue());
             rating.setPlayerRating(comboBoxRating.getValue());
-
 
             ses.save(rating);
 
