@@ -71,5 +71,10 @@
          </font>
       </Text>
       <ComboBox fx:id="comboBoxRating" layoutX="165.0" layoutY="131.0" prefHeight="25.0" prefWidth="64.0" />
+      <Label fx:id="labelErrorMessage" layoutX="130.0" layoutY="217.0" prefHeight="25.0" prefWidth="433.0" textFill="#fc0000">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

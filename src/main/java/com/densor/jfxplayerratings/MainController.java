@@ -11,11 +11,13 @@ import javafx.scene.image.ImageView;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MainController {
 
     private SessionFactory session;
-
+    @FXML
+    private Label labelErrorMessage;
     @FXML
     private Label labelGameWeek;
     @FXML
@@ -23,13 +25,13 @@ public class MainController {
     @FXML
     private Label labelPlayerLastName;
 
-
     @FXML
     private Button setButton;
     @FXML
     private Button addToDbButton;
     @FXML
     private Button loadButton;
+
     @FXML
     private ChoiceBox<String> choiceBoxPlayerLastNameForDb;
     @FXML
@@ -38,11 +40,13 @@ public class MainController {
     private ComboBox<Integer> comboBoxWeeks;
     @FXML
     private ComboBox<Integer> comboBoxRating;
+
     @FXML
     private ImageView img1;
     @FXML
     private LineChart<String, Integer> chart;
 
+    private boolean check;
 
 
     public MainController(SessionFactory session) {
@@ -87,18 +91,35 @@ public class MainController {
         });
 
         this.addToDbButton.setOnAction(e -> {
-            var ses = session.openSession();
-            var tx = ses.beginTransaction();
+
+            check = false;
+            labelErrorMessage.setText("");
 
             var rating = new PlayerRatings();
             rating.setGameWeek(comboBoxWeeks.getValue());
             rating.setLastName(choiceBoxPlayerLastNameForDb.getValue());
             rating.setPlayerRating(comboBoxRating.getValue());
 
-            ses.save(rating);
+            var ses = session.openSession();
+            var tx = ses.beginTransaction();
 
-            tx.commit();
-            ses.close();
+            List<PlayerRatings> listOfPlayerRatings = ses.createQuery("FROM PlayerRatings p", PlayerRatings.class).getResultList();
+            for (PlayerRatings player: listOfPlayerRatings) {
+                if (player.getGameWeek() == rating.getGameWeek() && Objects.equals(player.getLastName(), rating.getLastName())) {
+                    check = true;
+                    break;
+                }
+            }
+            if (check) {
+                tx.rollback();
+                ses.close();
+                labelErrorMessage.setText("ERROR: duplicated entry !");
+            } else {
+                ses.save(rating);
+                tx.commit();
+                ses.close();
+            }
+
         });
 
         this.loadButton.setOnAction(e -> {
