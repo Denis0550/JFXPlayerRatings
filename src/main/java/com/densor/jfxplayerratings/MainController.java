@@ -76,10 +76,10 @@ public class MainController {
         var ses1 = session.openSession();
         List<String> playerNames = ses1.createQuery("Select m.lastName FROM MunPlayers m", String.class).getResultList();
         ses1.close();
-        ObservableList<String> observableList1 = FXCollections.observableArrayList(playerNames);
+        ObservableList<String> observableListOfPlayers = FXCollections.observableArrayList(playerNames);
 
-        this.choiceBoxPlayerLastNameForDb.setItems(observableList1);
-        this.choiceBoxPlayerLastNameForChart.setItems(observableList1);
+        this.choiceBoxPlayerLastNameForDb.setItems(observableListOfPlayers);
+        this.choiceBoxPlayerLastNameForChart.setItems(observableListOfPlayers);
 
 
         // Buttons / Actions
@@ -119,7 +119,6 @@ public class MainController {
                 tx.commit();
                 ses.close();
             }
-
         });
 
         this.loadButton.setOnAction(e -> {
@@ -132,11 +131,11 @@ public class MainController {
             XYChart.Series<String, Integer> series = new XYChart.Series<>();
             series.setName(choiceBoxPlayerLastNameForChart.getValue());
 
-            Integer num1 = 0;
-            for (Integer num : numbers) {
-                System.out.print(num + ", ");
-                num1++;
-                series.getData().add(new XYChart.Data<>(num1.toString(), num));
+            int numberOfPoints = 0;
+            for (Integer pointValue : numbers) {
+                System.out.print(pointValue + ", ");
+                numberOfPoints++;
+                series.getData().add(new XYChart.Data<>(Integer.toString(numberOfPoints), pointValue));
             }
             chart.getData().add(series);
         });
