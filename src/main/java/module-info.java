@@ -3,6 +3,7 @@ module com.densor.jfxplayerratings {
     requires javafx.fxml;
     requires org.hibernate.orm.core;
     requires java.persistence;
+    requires java.sql;
     requires java.naming;
     requires static lombok;
 
